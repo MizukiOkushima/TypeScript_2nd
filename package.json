@@ -1,0 +1,23 @@
+{
+  "name": "typescript_2nd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MizukiOkushima/TypeScript_2nd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MizukiOkushima/TypeScript_2nd/issues"
+  },
+  "homepage": "https://github.com/MizukiOkushima/TypeScript_2nd#readme",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "typescript": "^5.8.3"
+  }
+}
