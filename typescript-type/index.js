@@ -20,6 +20,7 @@ var person2 = {
     },
     age: 21,
 };
+// person.hogehoge = 'hogehoge'; // エラーにならないが、型定義にないプロパティを追加している
 // Object全般 あまり使わない
 var person3 = {
     name: 'Jack',
@@ -55,12 +56,18 @@ book.push(21); // 配列に追加はエラーにならない TypeScriptは初期
 //     GRANDE = 'GRANDE',
 //     VENTI = 'VENTI',
 // }
+// enum CoffeeSize {
+//     SHORT,
+//     TALL,
+//     GRANDE,
+//     VENTI,
+// }
 var CoffeeSize;
 (function (CoffeeSize) {
-    CoffeeSize[CoffeeSize["SHORT"] = 0] = "SHORT";
-    CoffeeSize[CoffeeSize["TALL"] = 1] = "TALL";
-    CoffeeSize[CoffeeSize["GRANDE"] = 2] = "GRANDE";
-    CoffeeSize[CoffeeSize["VENTI"] = 3] = "VENTI";
+    CoffeeSize[CoffeeSize["SHORT"] = 100] = "SHORT";
+    CoffeeSize[CoffeeSize["TALL"] = 101] = "TALL";
+    CoffeeSize["GRANDE"] = "GRANDE";
+    // VENTI,      // エラーとなる 初期がが必要
 })(CoffeeSize || (CoffeeSize = {}));
 var coffee = {
     hot: true,
@@ -68,5 +75,18 @@ var coffee = {
 };
 // coffee.size = 'hello';
 // coffee.size = 'SHORT'; // エラー
-coffee.size = CoffeeSize.SHORT;
-console.log(CoffeeSize.SHORT);
+// coffee.size = CoffeeSize.SHORT;
+// console.log(CoffeeSize.SHORT);
+// any型
+var anything = true; // boolean型
+anything = 'hello'; // string型
+anything = ['hello', 33, true]; // 配列型
+anything = {}; // オブジェクト型
+anything.test = 'test'; // プロパティ追加も可能
+var banana = 'banana';
+banana = anything;
+// union型
+var unionType = 10; //number型とstring型の両方を許容
+// unionType.toUpperCase(); // string型のメソッドを使用できるが、number型ではエラーになる
+unionType = 'hello'; // string型に変更可能
+unionType.toUpperCase(); // string型のメソッドを使用できる
