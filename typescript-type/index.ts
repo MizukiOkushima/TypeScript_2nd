@@ -130,3 +130,15 @@ const cloth2: {
   color: 'white',
   size: 'medium',
 }
+
+// typeAlias型
+type ClothSize3 = 'small' | 'medium' | 'large'; // リテラル型のユニオン型をtypeエイリアスで定義
+// type number = 'small' | 'medium' | 'large'; // Number型をtypeエイリアスで定義はできない
+let clothSize4: ClothSize3 = 'large'; // typeエイリアスを使用してリテラル型のユニオン型を定義
+let cloth5: {
+    color: string,
+    size: ClothSize3,
+} = {
+    color: 'white',
+    size: 'medium',
+}
