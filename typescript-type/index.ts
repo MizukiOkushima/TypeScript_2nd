@@ -134,11 +134,27 @@ const cloth2: {
 // typeAlias型
 type ClothSize3 = 'small' | 'medium' | 'large'; // リテラル型のユニオン型をtypeエイリアスで定義
 // type number = 'small' | 'medium' | 'large'; // Number型をtypeエイリアスで定義はできない
-let clothSize4: ClothSize3 = 'large'; // typeエイリアスを使用してリテラル型のユニオン型を定義
-let cloth5: {
+let ClothSize3: ClothSize3 = 'large'; // typeエイリアスを使用してリテラル型のユニオン型を定義
+let cloth3: {
     color: string,
     size: ClothSize3,
 } = {
     color: 'white',
     size: 'medium',
 }
+
+// 関数における型定義
+function add(num1: number, num2: number): number {
+// function add(num1, num2): number { // パラメータに型定義がない場合、any型となる
+    return num1 + num2;
+}
+// add('hello', 2); // エラーになる
+
+// void型 何も返さない
+// function sayHello(): void {
+function sayHello(): undefined {
+    console.log('Hello');
+}
+
+console.log(sayHello()); // undefinedが出力される
+let tmp: undefined;
