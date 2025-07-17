@@ -151,10 +151,46 @@ function add(num1: number, num2: number): number {
 // add('hello', 2); // エラーになる
 
 // void型 何も返さない
-// function sayHello(): void {
-function sayHello(): undefined {
+function sayHello(): void {
     console.log('Hello');
+}
+// undefinedはreturnが無いと使えない（基本的に使用しないでvoidを使用すること）
+function sayHello2(): undefined {
+    console.log('Hello');
+    return ; // 明示的にundefinedを返す
 }
 
 console.log(sayHello()); // undefinedが出力される
 let tmp: undefined;
+
+let tmpUndefined: undefined = undefined; // undefined型の変数 undefinedのみを許容する
+let tmpNull: null = null; // null型の変数 nullのみを許容する
+
+const anotherAdd: (n1: number, n2: number) => number = add; // =>を使用する
+anotherAdd(3, 3);
+
+const anotherAdd2: (n1: number, n2: number) => number = function (num1: number, num2: number): number {  // 無名関数を使用する場合の記述
+    return num1 + num2;
+}
+anotherAdd2(3, 3);
+
+const anotherAdd3 = function (num1: number, num2: number): number {
+    return num1 + num2;
+}
+anotherAdd3(3, 3);
+
+const anotherAdd4: (n1: number, n2: number) => number = function (num1, num2): number {
+    return num1 + num2;
+}
+anotherAdd4(3, 3);
+
+const doubleNumber = (number: number): number => number * 2; // アロー関数を使用する
+const doubleNumber2: (number: number) => number = num => num * 2; // アロー関数を使用する
+
+function doubleAndHandle(num: number, cb: (num: number) => number): void {
+    const doubleNum = cb(num * 2);
+    console.log(doubleNum);
+ }
+doubleAndHandle(21, doubleNum => {
+    return doubleNum;
+});
