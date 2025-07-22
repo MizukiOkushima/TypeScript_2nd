@@ -224,8 +224,8 @@ const error2 = function error(message: string) { // 関数式として書いた�
 }
 
 type T = never | string; // never型はstring型とユニオン型で定義できるが、never型は決して値を持たないため、実際にはstring型のみが有効となる
-// function getSizeName(size: 's' | 'm' | 'l') {
-function getSizeName(size: 's' | 'm' | 'l' | 'xl') {
+function getSizeName(size: 's' | 'm' | 'l') {
+// function getSizeName(size: 's' | 'm' | 'l' | 'xl') {
     switch (size) {
         case 's':
             return 'small';
@@ -237,3 +237,4 @@ function getSizeName(size: 's' | 'm' | 'l' | 'xl') {
             return size satisfies never; // never型を返すことになる xlである場合はnever型ではないためエラーとなる
     }
 }
+
