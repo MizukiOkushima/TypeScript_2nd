@@ -194,3 +194,46 @@ function doubleAndHandle(num: number, cb: (num: number) => number): void {
 doubleAndHandle(21, doubleNum => {
     return doubleNum;
 });
+
+// unknown型
+let unknownInput: unknown;
+let anyInput: any;
+let text: string;
+unknownInput = 'hello'; // 文字列入れられる
+unknownInput = 21;      // 数値も入れられる
+unknownInput = true;    // any型と同様に何でも代入可能
+// text = unknownInput; // エラーになる unknown型は直接代入できない ナローイング,タイプガードが必要
+text = anyInput;        // any型は直接代入できる
+if (typeof unknownInput === 'string') {
+    text = unknownInput;
+}
+
+// satisfies演算子 型のチェックを行うだけの演算子
+28 satisfies number; // 28はnumber型であることをチェックする JSに変換する場合はsatisfies演算子が削除され、28のみ残る
+// '28' satisfies number; // '28'はnumber型ではないためエラーになる
+const age = 28 satisfies number; // age定数はsatisfies演算子が無いのと同じような宣言となる
+
+// never型 決して値を返さない関数や、常に例外
+// function error(message: string) { // 何も返さない場合、型が無い場合はvoid型となりエラーとなる
+function error(message: string): never { // never型 何も返さない関数に対して使う
+    throw new Error(message); // エラーを投げる関数
+}
+console.log(error('This is an error'));
+const error2 = function error(message: string) { // 関数式として書いた場合、error2はnever型となる これはTSのバージョン2にてnever型が導入された時に、型推論によって自動的にnever型を付与しても影響がなかったためである
+    throw new Error(message); // エラーを投げる関数
+}
+
+type T = never | string; // never型はstring型とユニオン型で定義できるが、never型は決して値を持たないため、実際にはstring型のみが有効となる
+// function getSizeName(size: 's' | 'm' | 'l') {
+function getSizeName(size: 's' | 'm' | 'l' | 'xl') {
+    switch (size) {
+        case 's':
+            return 'small';
+        case 'm':
+            return 'medium';
+        case 'l':
+            return 'large';
+        default:
+            return size satisfies never; // never型を返すことになる xlである場合はnever型ではないためエラーとなる
+    }
+}
